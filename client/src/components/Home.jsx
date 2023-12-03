@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-function Home({ socket }) {
+import { socket } from "../lib/socket";
+function Home() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const handleUsernameChange = (e) => {
     e.preventDefault();
     localStorage.setItem("userName", username);
-    socket.emit("newUser", { username, socketID: socket.id });
+    socket.auth = { username };
+    socket.connect();
+    // socket.emit("newUser", { username, socketID: socket.id });
     navigate("/chat");
   };
   return (

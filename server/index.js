@@ -12,23 +12,44 @@ const socketIO = require("socket.io")(http, {
 });
 
 app.use(cors());
-let users = [];
-
+socketIO.use((socket, next) => {
+  const username = socket.handshake.auth.username;
+  if (!username) {
+    return next(new Error("Invalid username"));
+  }
+  socket.username = username;
+  next();
+});
 socketIO.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
+  let users = [];
+
+  for (let [id, socket] of socketIO.of("/").sockets) {
+    users.push({
+      userID: id,
+      username: socket.username,
+    });
+  }
+  console.log(users);
+  socket.emit("users", users);
+
+  socket.broadcast.emit("user connected", {
+    userID: socket.id,
+    username: socket.username,
+  });
+
   socket.on("disconnect", () => {
     users = users.filter((user) => user.socketID !== socket.id);
     socketIO.emit("newUserResponse", users);
     console.log("🔥: A user disconnected");
   });
-  socket.on("message", (message) => {
-    socketIO.emit("messageResponse", message);
 
-    // socketIO.emit("message", message);
-  });
-  socket.on("newUser", (data) => {
-    users.push(data);
-    socketIO.emit("newUserResponse", users);
+  socket.on("message", (message) => {
+    console.log(message);
+    socket.to(message.receiverID).emit("message", {
+      senderID: socket.id,
+      text: message.text,
+    });
   });
 });
 
