@@ -20,8 +20,8 @@ export default function ChatBody({ messages }) {
             }
           >
             <Image blob={blob} />
-            <div className="chat-header">{message.name}</div>
           </div>
+          <div className="chat-header">{message.name}</div>
         </div>
       );
     } else {
