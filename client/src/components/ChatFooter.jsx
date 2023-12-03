@@ -1,12 +1,7 @@
 /* eslint-disable react/prop-types */
 import "../assets/css/duotone.min.css";
 import { useState } from "react";
-export default function ChatFooter({
-  socket,
-  selectUser,
-  messages,
-  setMessages,
-}) {
+export default function ChatFooter({ socket, selectUser, users, setUsers }) {
   const [message, setMessage] = useState("");
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -15,10 +10,18 @@ export default function ChatFooter({
         text: message,
         name: socket.auth.username,
         id: `${socket.id}${Math.random()}`,
+        time: new Date().toString(),
         receiverID: selectUser.userID,
       });
-      setMessages([...messages, { text: message, name: "You" }]);
     }
+    const currentUser = users.find((user) => user.userID === socket.id);
+    currentUser.message.push({
+      text: message,
+      name: "You",
+      time: new Date().toString(),
+      to: selectUser.userID,
+    });
+    setUsers([...users]);
     setMessage("");
     document.getElementById("input-chat").value = "";
   };
@@ -32,12 +35,15 @@ export default function ChatFooter({
             type="text"
             placeholder="Type here"
             className="input input-ghost flex-grow h-full focus:outline-none bg-transparent focus:border-none border-none"
-            disabled={selectUser.userID === 0}
+            // disabled={selectUser.userID === 0}
             onChange={(e) => {
               setMessage(e.target.value);
             }}
           />
-          <button className="btn btn-sm btn-ghost bg-transparent ">
+          <button
+            className="btn btn-sm btn-ghost bg-transparent "
+            disabled={selectUser.userID === 0}
+          >
             <i className="fa-duotone fa-paperclip "></i>
           </button>
         </div>

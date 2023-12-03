@@ -48,6 +48,7 @@ socketIO.on("connection", (socket) => {
     console.log(message);
     socket.to(message.receiverID).emit("message", {
       senderID: socket.id,
+      time: message.time,
       text: message.text,
     });
   });
