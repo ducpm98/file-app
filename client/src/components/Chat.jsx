@@ -33,7 +33,9 @@ function Chat({ socket }) {
             message: [
               ...user.message,
               {
+                type: message.type,
                 text: message.text,
+                mimeType: message.mimeType,
                 name: user.username,
                 time: message.time,
               },
@@ -73,7 +75,9 @@ function Chat({ socket }) {
       currentUser.message.forEach((message) => {
         if (message.to === selectUser.userID) {
           msg_temp.push({
+            type: message.type,
             text: message.text,
+            mimeType: message.mimeType,
             name: message.name,
             time: message.time,
           });
@@ -83,6 +87,8 @@ function Chat({ socket }) {
       selectUser.message.forEach((message) => {
         msg_temp.push({
           text: message.text,
+          mimeType: message.mimeType,
+          type: message.type,
           name: message.name,
           time: message.time,
         });

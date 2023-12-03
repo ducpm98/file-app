@@ -47,6 +47,8 @@ socketIO.on("connection", (socket) => {
   socket.on("message", (message) => {
     console.log(message);
     socket.to(message.receiverID).emit("message", {
+      type: message.type,
+      mimeType: message.mimeType != undefined ? message.mimeType : null,
       senderID: socket.id,
       time: message.time,
       text: message.text,
