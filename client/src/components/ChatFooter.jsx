@@ -27,7 +27,6 @@ export default function ChatFooter({ socket, selectUser, users, setUsers }) {
         to: selectUser.userID,
       });
       setFile(null);
-      setUsers([...users]);
     }
     if (message.trim()) {
       const time = new Date().toString();
@@ -45,8 +44,8 @@ export default function ChatFooter({ socket, selectUser, users, setUsers }) {
         time: time,
         to: selectUser.userID,
       });
-      setUsers([...users]);
     }
+    setUsers([...users]);
 
     setMessage("");
     document.getElementById("input-chat").value = "";
