@@ -4,7 +4,8 @@
       "outputs": ["dist/**"]
     },
     "dev": {
-      "persist": "true"
+      "cache": false,
+      "persistent": true
     }
   }
 }

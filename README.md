@@ -19,7 +19,6 @@ This Turborepo includes the following packages/apps:
 - `client`: a [React.js](https://react.dev) app
 - `server`: a [Express.js](https://expressjs.com) web server
 
-
 Each package/app is 100% [Javascript](https://www.javascript.com).
 
 ### Utilities
@@ -32,7 +31,7 @@ This Turborepo has some additional tools already setup for you:
 
 To build all apps and packages, run the following command:
 
-```
+```sh
 cd file-app
 npm build
 ```
@@ -41,7 +40,7 @@ npm build
 
 To develop all apps and packages, run the following command:
 
-```
+```sh
 cd file-app
 npm dev
 ```
@@ -52,7 +51,7 @@ Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo
 
 By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
 
-```
+```sh
 cd file-app
 npx turbo login
 ```
@@ -61,7 +60,7 @@ This will authenticate the Turborepo CLI with your [Vercel account](https://verc
 
 Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
 
-```
+```sh
 npx turbo link
 ```
 
