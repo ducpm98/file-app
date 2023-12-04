@@ -54,7 +54,7 @@ export default function ChatFooter({ socket, selectUser, users, setUsers }) {
   return (
     <div className="card w-full bg-base-300 shadow-xl rounded-t-none">
       <div className="card-body flex flex-row items-end">
-        <div className="flex flex-grow h-full bg-white pl-2 rounded-xl items-end pr-2 pt-2  pb-2">
+        <div className="flex flex-grow h-full bg-base-100 pl-2 rounded-xl items-end pr-2 pt-2  pb-2">
           <div className="flex flex-col h-full flex-grow gap-4 justify-center">
             {file != null && (
               <div className="flex flex-col gap-1 bg-gray-200 h-fit w-fit p-2  rounded-xl items-center">

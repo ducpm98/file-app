@@ -14,7 +14,7 @@ function Home() {
   };
   return (
     <div className="w-screen h-screen flex justify-center items-center">
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card w-96 bg-base-300 shadow-xl">
         <div className="card-body gap-5">
           <h2 className="card-title">Sign in</h2>
           <label className="form-control w-full max-w-xs ">

@@ -23,7 +23,13 @@ function Chat({ socket }) {
       socket.off("users", handle_users);
     };
   }, [socket, users]);
-
+  useEffect(() => {
+    const user = users.find((user) => user.userID === selectUser.userID);
+    if (user !== undefined) {
+      user.hasNewMessages = false;
+      setUsers([...users]);
+    }
+  }, [selectUser]);
   useEffect(() => {
     const handle_message = (message) => {
       const newUsers = users.map((user) => {
