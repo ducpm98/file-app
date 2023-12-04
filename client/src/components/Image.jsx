@@ -8,6 +8,12 @@ function Image({ blob }) {
       setSrc(reader.result);
     };
   }, [blob]);
-  return <img style={{ width: 150, height: "auto" }} src={src} />;
+  return (
+    <img
+      style={{ width: 150, height: "auto" }}
+      src={src}
+      className="rounded-xl"
+    />
+  );
 }
 export { Image };
