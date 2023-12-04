@@ -1,0 +1,16 @@
+{
+  "name": "file-app",
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "packageManager": "npm@9.8.1"
+}

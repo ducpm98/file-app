@@ -1,0 +1,52 @@
+
+> server@1.0.0 dev
+> nodemon index.js
+
+[33m[nodemon] 3.0.2[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node index.js`[39m
+Server listening on 4000
+⚡: YPBk62JKT23xZC9rAAAB user just connected!
+[ { userID: 'YPBk62JKT23xZC9rAAAB', username: 'dat' } ]
+⚡: -Fu05XS6tvZdv7g3AAAD user just connected!
+[
+  { userID: 'YPBk62JKT23xZC9rAAAB', username: 'dat' },
+  { userID: '-Fu05XS6tvZdv7g3AAAD', username: 'duc' }
+]
+{
+  text: 'helo',
+  name: 'duc',
+  type: 'text',
+  time: 'Mon Dec 04 2023 01:03:19 GMT-0500 (Eastern Standard Time)',
+  receiverID: 'YPBk62JKT23xZC9rAAAB'
+}
+{
+  text: 'ok',
+  name: 'dat',
+  type: 'text',
+  time: 'Mon Dec 04 2023 01:03:23 GMT-0500 (Eastern Standard Time)',
+  receiverID: '-Fu05XS6tvZdv7g3AAAD'
+}
+{
+  filename: 'Burndown Report - f23-financial-planner - Sprint_ Sep 18 - Oct 2, 2023 - 2023-10-01.csv',
+  text: <Buffer ef bb bf 22 44 61 74 65 22 2c 22 54 6f 74 61 6c 22 2c 22 52 65 6d 61 69 6e 69 6e 67 22 2c 22 43 6f 6d 70 6c 65 74 65 64 22 2c 22 49 64 65 61 6c 22 2c ... 588 more bytes>,
+  name: 'duc',
+  type: 'file',
+  mimeType: 'text/csv',
+  time: 'Mon Dec 04 2023 01:03:38 GMT-0500 (Eastern Standard Time)',
+  receiverID: 'YPBk62JKT23xZC9rAAAB'
+}
+🔥: A user disconnected
+🔥: A user disconnected
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+Server listening on 4000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+Server listening on 4000
+npm ERR! Lifecycle script `dev` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: server@1.0.0 
+npm ERR!   at location: /Users/boo/Desktop/file-app/server 

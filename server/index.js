@@ -30,7 +30,6 @@ socketIO.on("connection", (socket) => {
       username: socket.username,
     });
   }
-  console.log(users);
   socket.emit("users", users);
 
   socket.broadcast.emit("user connected", {
@@ -44,7 +43,6 @@ socketIO.on("connection", (socket) => {
   });
 
   socket.on("message", (message) => {
-    console.log(message);
     socket.to(message.receiverID).emit("message", {
       filename: message.filename != undefined ? message.filename : null,
       type: message.type,
