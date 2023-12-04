@@ -39,14 +39,14 @@ socketIO.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    users = users.filter((user) => user.socketID !== socket.id);
-    socketIO.emit("newUserResponse", users);
+    socket.broadcast.emit("user disconnected", socket.id);
     console.log("🔥: A user disconnected");
   });
 
   socket.on("message", (message) => {
     console.log(message);
     socket.to(message.receiverID).emit("message", {
+      filename: message.filename != undefined ? message.filename : null,
       type: message.type,
       mimeType: message.mimeType != undefined ? message.mimeType : null,
       senderID: socket.id,

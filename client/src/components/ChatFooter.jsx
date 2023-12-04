@@ -11,6 +11,7 @@ export default function ChatFooter({ socket, selectUser, users, setUsers }) {
     if (file != null) {
       const time = new Date().toString();
       socket.emit("message", {
+        filename: file.name,
         text: file,
         name: socket.auth.username,
         type: "file",
@@ -19,6 +20,7 @@ export default function ChatFooter({ socket, selectUser, users, setUsers }) {
         receiverID: selectUser.userID,
       });
       currentUser.message.push({
+        filename: file.name,
         type: "file",
         text: file,
         name: "You",
@@ -65,11 +67,11 @@ export default function ChatFooter({ socket, selectUser, users, setUsers }) {
                       setFile(null);
                     }}
                   >
-                    <i className="fa-duotone fa-times"></i>
+                    <i className="fa-duotone fa-times text-black"></i>
                   </button>
                 </div>
 
-                <span className="font-bold text-sm h-full w-full m-5 text-center">
+                <span className="font-bold text-sm h-full w-full m-5 text-center text-black">
                   {file.name.split(".")[file.name.split(".").length - 1]}
                 </span>
               </div>

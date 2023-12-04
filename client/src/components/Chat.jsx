@@ -39,6 +39,7 @@ function Chat({ socket }) {
             message: [
               ...user.message,
               {
+                filename: message.filename,
                 type: message.type,
                 text: message.text,
                 mimeType: message.mimeType,
@@ -63,6 +64,15 @@ function Chat({ socket }) {
       socket.off("message", handle_message);
     };
   }, [socket, users]);
+  useEffect(() => {
+    const handle_user_disconnected = (userID) => {
+      setUsers(users.filter((user) => user.userID !== userID));
+    };
+    socket.on("user disconnected", handle_user_disconnected);
+    () => {
+      socket.off("user disconnected", handle_user_disconnected);
+    };
+  }, [socket, users]);
 
   useEffect(() => {
     const handle_user_connected = (data) => {
@@ -81,6 +91,7 @@ function Chat({ socket }) {
       currentUser.message.forEach((message) => {
         if (message.to === selectUser.userID) {
           msg_temp.push({
+            filename: message.filename,
             type: message.type,
             text: message.text,
             mimeType: message.mimeType,
@@ -92,6 +103,7 @@ function Chat({ socket }) {
 
       selectUser.message.forEach((message) => {
         msg_temp.push({
+          filename: message.filename,
           text: message.text,
           mimeType: message.mimeType,
           type: message.type,
