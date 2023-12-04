@@ -1,5 +1,11 @@
 {
   "pipeline": {
+    "build": {
+      "outputs": ["dist/**"],
+      "command": {
+        "client": "npm run build --workspace=client"
+      }
+    },
     "dev": {
       "command": {
         "server": "npm run dev --workspace=server",
