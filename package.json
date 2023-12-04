@@ -1,7 +1,7 @@
 {
   "name": "file-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Chat application using Turborepo, Socket.io, React.js, and Express",
   "workspaces": [
     "server",
     "client"
@@ -15,5 +15,6 @@
   "packageManager": "npm@9.8.1",
   "devDependencies": {
     "turborepo": "^0.0.1"
-  }
+  },
+  "license": "MIT"
 }
