@@ -5,17 +5,17 @@ import ChatFooter from "./ChatFooter";
 import { useEffect, useState } from "react";
 
 function Chat({ socket }) {
-  const [selectUser, setSelectUser] = useState({ userID: 0, message: [] });
-  const [users, setUsers] = useState([]);
-  const [message, setMessages] = useState([]);
+  const [selectUser, setSelectUser] = useState({ userID: 0, message: [] }); // store current selected user object
+  const [users, setUsers] = useState([]); // store all users object in chat
+  const [message, setMessages] = useState([]); // store message of current room
 
+  // initial user list
   useEffect(() => {
     const handle_users = (user) => {
       for (let i = 0; i < user.length; i++) {
         user[i].hasNewMessages = false;
         user[i].message = [];
       }
-      console.log(user);
       setUsers(user);
     };
     socket.on("users", handle_users);
@@ -23,6 +23,7 @@ function Chat({ socket }) {
       socket.off("users", handle_users);
     };
   }, [socket, users]);
+
   useEffect(() => {
     const user = users.find((user) => user.userID === selectUser.userID);
     if (user !== undefined) {
@@ -30,6 +31,8 @@ function Chat({ socket }) {
       setUsers([...users]);
     }
   }, [selectUser]);
+
+  // new message coming
   useEffect(() => {
     const handle_message = (message) => {
       const newUsers = users.map((user) => {
@@ -64,6 +67,8 @@ function Chat({ socket }) {
       socket.off("message", handle_message);
     };
   }, [socket, users]);
+
+  // user disconnected => update users
   useEffect(() => {
     const handle_user_disconnected = (userID) => {
       setUsers(users.filter((user) => user.userID !== userID));
@@ -74,6 +79,7 @@ function Chat({ socket }) {
     };
   }, [socket, users]);
 
+  // new user connected => update users
   useEffect(() => {
     const handle_user_connected = (data) => {
       data.hasNewMessages = false;
@@ -83,6 +89,7 @@ function Chat({ socket }) {
     socket.on("user connected", handle_user_connected);
   }, [socket, users]);
 
+  // handle crafting message for new selected user
   useEffect(() => {
     const currentUser = users.find((user) => user.userID === socket.id);
     console.log(users);
@@ -121,6 +128,7 @@ function Chat({ socket }) {
       setMessages([]);
     };
   }, [selectUser, users]);
+
   return (
     <div className="flex gap-1 h-screen w-screen">
       <ChatBar
